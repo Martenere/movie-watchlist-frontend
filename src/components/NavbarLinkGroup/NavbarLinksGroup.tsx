@@ -9,10 +9,10 @@ import {
   rem,
 } from "@mantine/core";
 import { IconCalendarStats, IconChevronRight } from "@tabler/icons-react";
-import classes from "./NavbarLinkGroup.module.css";
+import classes from "./NavbarLinksGroup.module.css";
 
 interface LinksGroupProps {
-  icon: React.FC<unknown>;
+  icon: React.FC<any>;
   label: string;
   initiallyOpened?: boolean;
   links?: { label: string; link: string }[];
