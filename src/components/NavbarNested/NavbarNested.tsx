@@ -1,12 +1,5 @@
-import { Group, Code, ScrollArea, rem } from "@mantine/core";
+import { ScrollArea } from "@mantine/core";
 import {
-  IconNotes,
-  IconCalendarStats,
-  IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
-  IconLock,
   IconHome,
   IconSearch,
   IconStar,
@@ -22,15 +15,15 @@ import { LinksGroup } from "../NavbarLinkGroup/NavbarLinksGroup";
 const mockdata = [
   {
     label: "Home",
-    icon: IconHome, // Replace with an icon representing home
+    icon: IconHome,
   },
   {
     label: "Search",
-    icon: IconSearch, // Replace with an icon representing search
+    icon: IconSearch,
   },
   {
     label: "My Watchlist",
-    icon: IconStar, // Replace with an icon representing a star (favorite)
+    icon: IconStar,
     links: [
       { label: "All Movies", link: "/watchlist" },
       { label: "To Watch", link: "/watchlist/to-watch" },
@@ -39,7 +32,7 @@ const mockdata = [
   },
   {
     label: "Browse",
-    icon: IconList, // Replace with an icon representing browsing
+    icon: IconList,
     links: [
       { label: "Genres", link: "/browse/genres" },
       { label: "Popular", link: "/browse/popular" },
@@ -48,7 +41,7 @@ const mockdata = [
   },
   {
     label: "Settings",
-    icon: IconSettings, // Replace with an icon representing settings
+    icon: IconSettings,
   },
 ];
 
