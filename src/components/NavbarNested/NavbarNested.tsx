@@ -7,22 +7,48 @@ import {
   IconFileAnalytics,
   IconAdjustments,
   IconLock,
+  IconHome,
+  IconSearch,
+  IconStar,
+  IconList,
+  IconSettings,
 } from "@tabler/icons-react";
+// import { UserButton } from "../UserButton/UserButton";
 
+// import { Logo } from "./Logo";
 import classes from "./NavbarNested.module.css";
 import { LinksGroup } from "../NavbarLinkGroup/NavbarLinksGroup";
 
 const mockdata = [
-  { label: "Explore Movies", icon: IconGauge },
   {
-    label: "Watchlists",
-    icon: IconNotes,
-    initiallyOpened: true,
+    label: "Home",
+    icon: IconHome, // Replace with an icon representing home
+  },
+  {
+    label: "Search",
+    icon: IconSearch, // Replace with an icon representing search
+  },
+  {
+    label: "My Watchlist",
+    icon: IconStar, // Replace with an icon representing a star (favorite)
     links: [
-      { label: "Action Movies", link: "/" },
-      { label: "Humor", link: "/" },
-      { label: "Flicks for rainy days", link: "/" },
+      { label: "All Movies", link: "/watchlist" },
+      { label: "To Watch", link: "/watchlist/to-watch" },
+      { label: "Watched", link: "/watchlist/watched" },
     ],
+  },
+  {
+    label: "Browse",
+    icon: IconList, // Replace with an icon representing browsing
+    links: [
+      { label: "Genres", link: "/browse/genres" },
+      { label: "Popular", link: "/browse/popular" },
+      { label: "New Releases", link: "/browse/new-releases" },
+    ],
+  },
+  {
+    label: "Settings",
+    icon: IconSettings, // Replace with an icon representing settings
   },
 ];
 
@@ -37,7 +63,7 @@ export function NavbarNested() {
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
 
-      <div className={classes.footer}>{/* <UserButton /> */}</div>
+      <div className={classes.footer}></div>
     </nav>
   );
 }
