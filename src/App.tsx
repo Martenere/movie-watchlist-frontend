@@ -1,6 +1,6 @@
-import { Group, Code, ScrollArea, rem, AppShell, Burger } from "@mantine/core";
+import { AppShell, Burger } from "@mantine/core";
 import { NavbarNested } from "./components/NavbarNested/NavbarNested";
-import { useDidUpdate, useDisclosure } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import "@mantine/core/styles.css";
 
 export default function app() {

@@ -1,5 +1,4 @@
-/*eslint-env node*/
-module.exports = {
+export default {
   plugins: {
     "postcss-preset-mantine": {},
     "postcss-simple-vars": {
@@ -11,5 +10,7 @@ module.exports = {
         "mantine-breakpoint-xl": "88em",
       },
     },
+    tailwindcss: {},
+    autoprefixer: {},
   },
 };
