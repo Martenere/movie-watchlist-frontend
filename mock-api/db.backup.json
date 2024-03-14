@@ -2,12 +2,18 @@
   "users": [
     {
       "id": 1,
-      "name": "John Doe",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "JohnDoe@email.com",
+      "is_enabled": true,
       "watchlists": [1, 2]
     },
     {
       "id": 2,
-      "name": "Jane Smith",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "FlowerGirl94@email.com",
+      "is_enabled": true,
       "watchlists": [3]
     }
   ],
