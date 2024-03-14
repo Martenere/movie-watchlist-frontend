@@ -32,8 +32,16 @@ export default function app() {
           <Route path="/" element={<div>home</div>} />
           <Route path="/home" element={<div>home</div>} />
           <Route
+            path="/watchlists/:id"
+            element={<div>specific watchlist</div>}
+          />
+          <Route
             path="/search-for-movies"
             element={<div>/search-for-movies</div>}
+          />
+          <Route
+            path="/create-new-watchlist"
+            element={<div>/create-new-watchlist</div>}
           />
         </Routes>
       </AppShell.Main>

@@ -38,7 +38,7 @@ const MyWatchLists = {
     { label: "Kubricks best", link: "/watchlists/3", icon: IconPencil },
     {
       label: "Create new playlist",
-      link: "/createNewPlaylist",
+      link: "/create-new-watchlist",
       icon: IconPlus,
     },
   ],
