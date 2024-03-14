@@ -2,12 +2,16 @@
   "users": [
     {
       "id": 1,
-      "name": "John Doe",
+      "firstName": "John",
+      "lastName": "Doe",
+      "is_enabled": true,
       "watchlists": [1, 2]
     },
     {
       "id": 2,
-      "name": "Jane Smith",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "is_enabled": true,
       "watchlists": [3]
     }
   ],
