@@ -13,7 +13,7 @@ export const initialSearchProp: searchInputProps = {
 
 export const searchInputAtom = atom(initialSearchProp);
 
-export const movieSearchResultAtom = atom("", async (get) => {
+export const movieSearchResultAtom = atom(async (get) => {
   const url = convertSearchPropToTmdbUrl(get(searchInputAtom));
   console.log(url);
   return searchTMDB(url);
