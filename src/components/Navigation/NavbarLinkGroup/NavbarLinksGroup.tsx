@@ -22,18 +22,20 @@ interface LinksGroupProps {
   initiallyOpened?: boolean;
   link: string;
   links: { label: string; link: string; icon: unknown }[];
+  buttons: { label: string; link: string; icon: unknown }[];
 }
 
 export function LinksGroup({
   icon: Icon,
   label,
   initiallyOpened,
-  link,
+  buttons,
   links,
 }: LinksGroupProps) {
   const nav = useNavigate();
   const [opened, setOpened] = useState(initiallyOpened || false);
-  const items = links.map((linkItem) => (
+
+  const linkItems = links.map((linkItem) => (
     <div
       key={linkItem.label}
       className="link flex justify-between items-center"
@@ -54,6 +56,33 @@ export function LinksGroup({
         className="ml-7"
         icon={linkItem.icon}
         defaultChecked
+        size="md"
+      />
+    </div>
+  ));
+
+  const buttonsItems = buttons.map((linkItem) => (
+    <div
+      key={linkItem.label}
+      className="link link-text flex justify-between items-center rounded-md"
+    >
+      <Text
+        component="a"
+        fw={600}
+        className="  flex grow justify-start p-3  items-center text-ml h-12"
+        onClick={(e) => {
+          e.preventDefault();
+          nav(linkItem.link);
+        }}
+        style={{ cursor: "pointer" }}
+      >
+        {linkItem.label}
+      </Text>
+      <Checkbox
+        className="ml-7"
+        icon={linkItem.icon}
+        checked={true}
+        color="green"
         size="md"
       />
     </div>
@@ -91,7 +120,8 @@ export function LinksGroup({
       </UnstyledButton>
 
       <Collapse className=" ml flex flex-col" in={opened}>
-        {items}
+        {linkItems}
+        {buttonsItems}
       </Collapse>
     </>
   );

@@ -27,6 +27,7 @@ const mockdata = [
 const MyWatchLists = {
   label: "My Watchlists",
   icon: IconStar,
+  initiallyOpened: true,
 
   links: [
     { label: "Summer Flicks", link: "/watchlists/1", icon: IconPencil },
@@ -36,6 +37,9 @@ const MyWatchLists = {
       icon: IconPencil,
     },
     { label: "Kubricks best", link: "/watchlists/3", icon: IconPencil },
+  ],
+
+  buttons: [
     {
       label: "Create new playlist",
       link: "/create-new-watchlist",
