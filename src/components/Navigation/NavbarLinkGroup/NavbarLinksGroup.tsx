@@ -64,17 +64,17 @@ export function LinksGroup({
   const buttonsItems = buttons.map((linkItem) => (
     <div
       key={linkItem.label}
-      className="link link-text flex justify-between items-center rounded-md"
+      className="link  flex justify-between items-center rounded-md hover:bg-green-950 hover:border-emerald-900 hover:border-2 hover:border-spacing-2"
+      onClick={(e) => {
+        e.preventDefault();
+        nav(linkItem.link);
+      }}
+      style={{ cursor: "pointer" }}
     >
       <Text
         component="a"
         fw={600}
         className="  flex grow justify-start p-3  items-center text-ml h-12"
-        onClick={(e) => {
-          e.preventDefault();
-          nav(linkItem.link);
-        }}
-        style={{ cursor: "pointer" }}
       >
         {linkItem.label}
       </Text>
