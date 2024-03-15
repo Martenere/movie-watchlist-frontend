@@ -82,6 +82,7 @@ export function LinksGroup({
         className="ml-7"
         icon={linkItem.icon}
         checked={true}
+        readOnly={true}
         color="green"
         size="md"
       />

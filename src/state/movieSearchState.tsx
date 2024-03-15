@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { loadable } from "jotai/utils";
 
 export interface searchInputProps {
   title: string;
@@ -14,13 +13,13 @@ export const initialSearchProp: searchInputProps = {
 
 export const searchInputAtom = atom(initialSearchProp);
 
-export const movieSearchResultAtom = atom(async (get) => {
+export const movieSearchResultAtom = atom("", async (get) => {
   const url = convertSearchPropToTmdbUrl(get(searchInputAtom));
   console.log(url);
   return searchTMDB(url);
 });
 
-async function searchTMDB(url) {
+async function searchTMDB(url: string) {
   // Example query url: "https://api.themoviedb.org/3/search/movie?query=star%20wars&include_adult=false&language=en-US&page=1";
 
   const options = {
