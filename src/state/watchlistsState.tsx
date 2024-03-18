@@ -3,6 +3,16 @@ import { transformMovieData } from "../components/pages/MovieSearchPage/MovieCar
 
 const watchlistUrlAtom = atom("http://localhost:3000/watchlists");
 
+export interface watchlistData {
+  id: string | number;
+  user: string;
+  userId: number;
+  name: string;
+  description: string;
+
+  movies: number[];
+}
+
 export const watchlistsFromApiAtom = atom(async (get) => {
   return getWatchlistDataFromApi(get(watchlistUrlAtom));
 });
@@ -13,6 +23,7 @@ async function getWatchlistDataFromApi(url: string) {
     const data = await res.json();
     return data;
   } catch (error) {
+    return [];
     console.log("Error when fetching watchlist: ", error);
   }
 }
