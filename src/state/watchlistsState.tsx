@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { transformMovieData } from "../components/pages/MovieSearchPage/MovieCardList";
 
 const watchlistUrlAtom = atom("http://localhost:3000/watchlists");
 
