@@ -15,10 +15,10 @@ export default function WatchlistsList() {
   return (
     <div>
       {watchlists.map((w) => (
-        <>
+        <div key={w.id}>
           <Divider my="md" />
-          <WatchlistItem key={w.id} {...w} />
-        </>
+          <WatchlistItem {...w} />
+        </div>
       ))}
     </div>
   );

@@ -1,12 +1,12 @@
-import { Atom, atom, useAtom } from "jotai";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieCard, MovieCardProps } from "../pages/MovieSearchPage/MovieCard";
-import { transformMovieData } from "../pages/MovieSearchPage/MovieCardList";
-import { Grid } from "@mantine/core";
 
-export default function MovieCardFetcher({ MovieIdAtom }: typeof atom) {
-  const [movieId, __]: [number, Function] = useAtom(MovieIdAtom);
-  const [movieData, setMovieData] = useState();
+import { Grid } from "@mantine/core";
+import { transformMovieData } from "../pages/MovieSearchPage/MovieCardList";
+
+export default function MovieCardFetcher({ id }) {
+  const [movieData, setMovieData]: [MovieCardProps | undefined, Function] =
+    useState();
 
   const getMovieByID = (id: number) => {
     const url = "https://api.themoviedb.org/3/movie/" + id + "?language=en-US";
@@ -18,21 +18,22 @@ export default function MovieCardFetcher({ MovieIdAtom }: typeof atom) {
         Authorization: "Bearer " + tmdb_api_read_key,
       },
     };
+
     fetch(url, options)
       .then((res) => res.json())
-      .then((json) => {
-        console.log(json), setMovieData(transformMovieData(json));
-      })
-      .catch((err) => console.error("error:" + err));
+      .then((data) => {
+        setMovieData(transformMovieData(data));
+      });
   };
 
-  useEffect(() => getMovieByID(movieId), []);
+  useEffect(() => getMovieByID(id), []);
 
   if (!movieData) {
     return <p>loading</p>;
   }
+
   return (
-    <Grid.Col span={3} key={movieId}>
+    <Grid.Col span={3}>
       <MovieCard {...movieData} />
     </Grid.Col>
   );
