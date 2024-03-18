@@ -14,6 +14,8 @@ import { IconChevronRight } from "@tabler/icons-react";
 import "./NavbarLinksGroup.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { currentWatchlistEditIndex } from "../../../state/CurrentlyEditingState";
+import { useAtom } from "jotai";
 
 interface LinksGroupProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,7 +23,7 @@ interface LinksGroupProps {
   label: string;
   initiallyOpened?: boolean;
   link: string;
-  links: { label: string; link: string; icon: unknown }[];
+  links: { label: string; link: string; icon: unknown; data: any }[];
   buttons: { label: string; link: string; icon: unknown }[];
 }
 
@@ -34,6 +36,9 @@ export function LinksGroup({
 }: LinksGroupProps) {
   const nav = useNavigate();
   const [opened, setOpened] = useState(initiallyOpened || false);
+  const [watchlistEditIndex, setWatchlistEditIndex] = useAtom(
+    currentWatchlistEditIndex
+  );
 
   const linkItems = links.map((linkItem) => (
     <div
@@ -52,10 +57,12 @@ export function LinksGroup({
       >
         {linkItem.label}
       </Text>
+      <Text>{linkItem.data.movies.length}</Text>
       <Checkbox
         className="ml-7"
         icon={linkItem.icon}
-        defaultChecked
+        checked={watchlistEditIndex === linkItem.data.id}
+        onClick={() => setWatchlistEditIndex(linkItem.data.id)}
         size="md"
       />
     </div>

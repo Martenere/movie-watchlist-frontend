@@ -10,6 +10,11 @@ import {
 import "./NavbarNested.css";
 import { LinksGroup } from "../NavbarLinkGroup/NavbarLinksGroup";
 import { NavbarLink } from "../NavbarLink/NavbarLinks";
+import { useAtom } from "jotai";
+import {
+  WatchlistData,
+  watchlistsFromApiAtom,
+} from "../../../state/watchlistsState";
 
 const mockdata = [
   {
@@ -24,41 +29,57 @@ const mockdata = [
   },
 ];
 
-const MyWatchLists = {
-  label: "My Watchlists",
-  icon: IconStar,
-  initiallyOpened: true,
+const MyWatchLists = (links) => {
+  return {
+    label: "My Watchlists",
+    icon: IconStar,
+    initiallyOpened: true,
 
-  links: [
-    { label: "Summer Flicks", link: "/watchlists/1", icon: IconPencil },
-    {
-      label: "Horror bonanza",
-      link: "/watchlists/2",
-      icon: IconPencil,
-    },
-    { label: "Kubricks best", link: "/watchlists/3", icon: IconPencil },
-  ],
+    links: links,
+    // [
+    //   { label: "Summer Flicks", link: "/watchlists/1", icon: IconPencil },
+    //   {
+    //     label: "Horror bonanza",
+    //     link: "/watchlists/2",
+    //     icon: IconPencil,
+    //   },
+    //   { label: "Kubricks best", link: "/watchlists/3", icon: IconPencil },
+    // ],
 
-  buttons: [
-    {
-      label: "Create new playlist",
-      link: "/create-new-watchlist",
-      icon: IconPlus,
-    },
-  ],
+    buttons: [
+      {
+        label: "Create new playlist",
+        link: "/create-new-watchlist",
+        icon: IconPlus,
+      },
+    ],
+  };
+};
+
+const generateWatchlistLink = (watchlistData: WatchlistData) => {
+  return {
+    label: watchlistData.name,
+    link: "/watchlist/" + watchlistData.id,
+    icon: IconPencil,
+    data: watchlistData,
+  };
 };
 
 export function NavbarNested() {
-  const links = mockdata.map((item) => (
+  const [watchlists, _] = useAtom(watchlistsFromApiAtom);
+  const navLinks = mockdata.map((item) => (
     <NavbarLink {...item} key={item.label} />
   ));
+  const watchlistLinks = watchlists.map((watchlist) =>
+    generateWatchlistLink(watchlist)
+  );
 
   return (
     <nav className="navbar">
       <ScrollArea className="links">
         <div className="linksInner flex flex-col gap-6 p-4">
-          {links}
-          <LinksGroup {...MyWatchLists} />
+          {navLinks}
+          <LinksGroup {...MyWatchLists(watchlistLinks)} />
         </div>
       </ScrollArea>
 
