@@ -11,6 +11,7 @@ import {
 import "./MovieCard.css";
 
 export interface MovieCardProps {
+  id: number;
   image: string;
   title: string;
   description: string;

@@ -2,8 +2,9 @@ import { AppShell, Burger } from "@mantine/core";
 import { NavbarNested } from "./components/Navigation/NavbarNested/NavbarNested";
 import { useDisclosure } from "@mantine/hooks";
 import "@mantine/core/styles.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MovieSearchPage from "./components/pages/MovieSearchPage/MovieSearchPage";
+import WatchlistOverview from "./components/pages/WatchListOverview/WatchlistOverview";
 
 export default function app() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -30,8 +31,8 @@ export default function app() {
 
       <AppShell.Main className="bg-gray-700">
         <Routes>
-          <Route path="/" element={<div>home</div>} />
-          <Route path="/home" element={<div>home</div>} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<WatchlistOverview />} />
           <Route
             path="/watchlists/:id"
             element={<div>specific watchlist</div>}

@@ -1,3 +1,10 @@
+import { Suspense } from "react";
+import WatchlistsList from "./WatchlistsList";
+
 export default function WatchlistOverview() {
-  return <div>WatchlistOverview</div>;
+  return (
+    <Suspense fallback={<p>Loading watchlists...</p>}>
+      <WatchlistsList />
+    </Suspense>
+  );
 }
