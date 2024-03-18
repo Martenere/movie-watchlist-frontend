@@ -5,8 +5,9 @@ import { MovieCard, MovieCardProps } from "./MovieCard";
 import { ApiMovieData } from "./MovieSearchPage";
 import { Grid } from "@mantine/core";
 
-function transformMovieData(data: ApiMovieData): MovieCardProps {
+export function transformMovieData(data: ApiMovieData): MovieCardProps {
   return {
+    id: data.id,
     image: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
     title: data.title,
     description: data.overview,
@@ -42,7 +43,7 @@ export default function MovieCardList() {
       )}
       <Grid>
         {movieCardData.map((props: MovieCardProps) => (
-          <Grid.Col span={3}>
+          <Grid.Col span={3} key={props.id}>
             <MovieCard {...props} />
           </Grid.Col>
         ))}
