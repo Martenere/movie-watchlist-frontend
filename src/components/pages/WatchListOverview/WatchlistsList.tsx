@@ -12,6 +12,10 @@ export default function WatchlistsList() {
     watchlistsFromApiAtom
   );
 
+  if(!watchlists){
+    return <div><p>Couldn't load watchlists</p></div>
+  }
+
   return (
     <div>
       {watchlists.map((w) => (
