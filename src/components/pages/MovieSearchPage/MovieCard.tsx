@@ -9,6 +9,8 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import "./MovieCard.css";
+import { useAtom } from "jotai";
+import { currentWatchlistEditIndex } from "../../../state/CurrentlyEditingState";
 
 export interface MovieCardProps {
   id: number;
@@ -20,18 +22,39 @@ export interface MovieCardProps {
 }
 
 export function MovieCard({
+  id,
   image,
   title,
   description,
   country,
   badges,
 }: MovieCardProps) {
-  //   const { image, title, description, country, badges } = mockdata;
+  const [watchlistId,] = useAtom(currentWatchlistEditIndex)
+
   const features = badges.map((badge) => (
     <Badge variant="light" key={badge.label} leftSection={badge.emoji}>
       {badge.label}
     </Badge>
   ));
+
+  const addMovieToWatchlists = () => {
+    const baseUrl = "https://localhost:32780"
+    const url = `${baseUrl}/watchlists/${watchlistId}/movies/add`;
+    const data = {
+      movieId: id,
+      movieName: title
+    }
+    
+    const options = {
+      method: "PUT",
+      headers: {
+        'Content-Type': "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options)
+  }
 
   return (
     <Card withBorder radius="md" p="md" className="card">
@@ -63,8 +86,8 @@ export function MovieCard({
       </Card.Section>
 
       <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }}>
-          Show details
+        <Button radius="md" style={{ flex: 1 }} onClick={addMovieToWatchlists}>
+          Add to watchlist
         </Button>
         <ActionIcon variant="default" radius="md" size={36}>
           <IconHeart className="like" stroke={1.5} />
