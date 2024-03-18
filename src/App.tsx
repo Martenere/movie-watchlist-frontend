@@ -3,6 +3,7 @@ import { NavbarNested } from "./components/Navigation/NavbarNested/NavbarNested"
 import { useDisclosure } from "@mantine/hooks";
 import "@mantine/core/styles.css";
 import { Route, Routes } from "react-router-dom";
+import MovieSearchPage from "./components/pages/MovieSearchPage/MovieSearchPage";
 
 export default function app() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -27,7 +28,7 @@ export default function app() {
         <NavbarNested />
       </AppShell.Navbar>
 
-      <AppShell.Main>
+      <AppShell.Main className="bg-gray-700">
         <Routes>
           <Route path="/" element={<div>home</div>} />
           <Route path="/home" element={<div>home</div>} />
@@ -35,10 +36,7 @@ export default function app() {
             path="/watchlists/:id"
             element={<div>specific watchlist</div>}
           />
-          <Route
-            path="/search-for-movies"
-            element={<div>/search-for-movies</div>}
-          />
+          <Route path="/search-for-movies" element={<MovieSearchPage />} />
           <Route
             path="/create-new-watchlist"
             element={<div>/create-new-watchlist</div>}
