@@ -22,12 +22,12 @@ export const movieSearchResultAtom = atom(async (get) => {
 async function searchTMDB(url: string) {
   // Example query url: "https://api.themoviedb.org/3/search/movie?query=star%20wars&include_adult=false&language=en-US&page=1";
 
+  const tmdb_api_read_key = import.meta.env.VITE_TMDB_API_READ_KEY;
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDVmOTk5ZDhjZTgyMTFkN2M2ZDQzMWNlNjcwYzI1MCIsInN1YiI6IjY1ZWViMGI3ZjVjYjIxMDE0ODQ0ZDFlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.73F7Db20Mau02rhJayIOKbmeaYlBdy74nKWW8M86ZrM",
+      Authorization: "Bearer " + tmdb_api_read_key,
     },
   };
 
