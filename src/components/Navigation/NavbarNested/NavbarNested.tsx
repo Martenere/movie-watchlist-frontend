@@ -15,6 +15,7 @@ import {
   WatchlistData,
   watchlistsFromApiAtom,
 } from "../../../state/watchlistsState";
+import CreateNewPlaylistButton from "./CreateNewPlaylistButton";
 
 const mockdata = [
   {
@@ -37,13 +38,8 @@ const MyWatchLists = (links) => {
 
     links: links,
 
-    buttons: [
-      {
-        label: "Create new playlist",
-        link: "/create-new-watchlist",
-        icon: IconPlus,
-      },
-    ],
+    buttons: [],
+    createNewWatchlistButton: CreateNewPlaylistButton(),
   };
 };
 
