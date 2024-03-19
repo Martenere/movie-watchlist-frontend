@@ -22,11 +22,12 @@ export default function MovieCardFetcher({ id }) {
     fetch(url, options)
       .then((res) => res.json())
       .then((data) => {
-        setMovieData(transformMovieData(data));
+        setMovieData({...transformMovieData(data)});
       });
+      
   };
 
-  useEffect(() => getMovieByID(id), []);
+  useEffect(() => getMovieByID(id), [id]);  
 
   if (!movieData) {
     return <p>loading</p>;

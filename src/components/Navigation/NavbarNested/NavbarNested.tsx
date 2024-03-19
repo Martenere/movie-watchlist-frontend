@@ -46,7 +46,7 @@ const MyWatchLists = (links) => {
 const generateWatchlistLink = (watchlistData: WatchlistData) => {
   return {
     label: watchlistData.name,
-    link: "/watchlist/" + watchlistData.id,
+    link: "/watchlists/" + watchlistData.id,
     icon: IconPencil,
     data: watchlistData,
   };

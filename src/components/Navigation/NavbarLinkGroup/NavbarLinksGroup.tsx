@@ -53,14 +53,15 @@ export function LinksGroup({
         fw={600}
         className=" link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12"
         onClick={(e) => {
-          e.preventDefault();
+          //e.preventDefault();
+          setSelectedWatchlist(linkItem.data)
           nav(linkItem.link);
         }}
         style={{ cursor: "pointer" }}
       >
         {linkItem.label}
       </Text>
-      <Text>{linkItem.data.movies.length}</Text>
+      {/* <Text>{linkItem.data.movies.length}</Text> */}
       <Checkbox
         className="ml-7"
         icon={linkItem.icon}

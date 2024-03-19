@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { watchlistData } from "./watchlistsState";
 
 const initWatchlistData: watchlistData = {
@@ -10,4 +10,5 @@ const initWatchlistData: watchlistData = {
 
   movies: [],
 };
+
 export const currentWatchlistEdit = atom<watchlistData>(initWatchlistData);

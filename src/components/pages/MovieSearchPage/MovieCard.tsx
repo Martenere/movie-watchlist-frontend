@@ -12,7 +12,7 @@ import "./MovieCard.css";
 import { useAtom } from "jotai";
 import { currentWatchlistEdit } from "../../../state/CurrentlyEditingState";
 import { BASE_URL } from "../../../../utils/globalVariables";
-import { triggerRefetchAtom } from "../../../state/watchlistsState";
+import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
 
 export interface MovieCardProps {
   id: number;
@@ -32,7 +32,7 @@ export function MovieCard({
   badges,
 }: MovieCardProps) {
   const [selectedWatchlist] = useAtom(currentWatchlistEdit);
-  const [, triggerWatchlistRefetch] = useAtom(triggerRefetchAtom);
+  const [, triggerWatchlistRefetch] = useAtom(triggerWatchlistsRefetchAtom);
 
   const features = badges.map((badge) => (
     <Badge variant="light" key={badge.label} leftSection={badge.emoji}>
