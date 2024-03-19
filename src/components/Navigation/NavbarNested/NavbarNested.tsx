@@ -36,15 +36,6 @@ const MyWatchLists = (links) => {
     initiallyOpened: true,
 
     links: links,
-    // [
-    //   { label: "Summer Flicks", link: "/watchlists/1", icon: IconPencil },
-    //   {
-    //     label: "Horror bonanza",
-    //     link: "/watchlists/2",
-    //     icon: IconPencil,
-    //   },
-    //   { label: "Kubricks best", link: "/watchlists/3", icon: IconPencil },
-    // ],
 
     buttons: [
       {

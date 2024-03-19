@@ -5,6 +5,7 @@ import "@mantine/core/styles.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import MovieSearchPage from "./components/pages/MovieSearchPage/MovieSearchPage";
 import WatchlistOverview from "./components/pages/WatchListOverview/WatchlistOverview";
+import { Suspense } from "react";
 
 export default function app() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,7 +27,9 @@ export default function app() {
       </AppShell.Header>
 
       <AppShell.Navbar p="0">
-        <NavbarNested />
+        <Suspense>
+          <NavbarNested />
+        </Suspense>
       </AppShell.Navbar>
 
       <AppShell.Main className="bg-gray-700">

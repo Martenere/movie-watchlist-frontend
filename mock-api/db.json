@@ -38,6 +38,13 @@
       "name": "Jane's Favorites",
       "description": "These are my fav movies, i've watched a lot of different films, and i think this is the pinnacle of cinema. Period.",
       "movies": [242582, 808]
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "name": "Jane's Not favs",
+      "description": "These are my fav movies, i've watched a lot of different films, and i think this is the pinnacle of cinema. Period.",
+      "movies": []
     }
   ],
   "movies": [

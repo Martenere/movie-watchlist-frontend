@@ -12,6 +12,7 @@ import "./MovieCard.css";
 import { useAtom } from "jotai";
 import { currentWatchlistEdit } from "../../../state/CurrentlyEditingState";
 import { BASE_URL } from "../../../../utils/globalVariables";
+import { triggerRefetchAtom } from "../../../state/watchlistsState";
 
 export interface MovieCardProps {
   id: number;
@@ -31,6 +32,7 @@ export function MovieCard({
   badges,
 }: MovieCardProps) {
   const [selectedWatchlist] = useAtom(currentWatchlistEdit);
+  const [, triggerWatchlistRefetch] = useAtom(triggerRefetchAtom);
 
   const features = badges.map((badge) => (
     <Badge variant="light" key={badge.label} leftSection={badge.emoji}>
@@ -38,7 +40,7 @@ export function MovieCard({
     </Badge>
   ));
 
-  const addMovieToWatchlists = () => {
+  const addMovieToWatchlists = async () => {
     const url = `${BASE_URL}/watchlists/${selectedWatchlist.id}/movies/add`;
     const data = {
       movieId: id,
@@ -53,10 +55,10 @@ export function MovieCard({
       body: JSON.stringify(data),
     };
 
-    fetch(url, options);
+    await fetch(url, options);
   };
 
-  const removeMovieFromWatchlists = () => {
+  const removeMovieFromWatchlists = async () => {
     const url = `${BASE_URL}/watchlists/${selectedWatchlist.id}/movies/remove`;
     const data = {
       movieId: id,
@@ -72,15 +74,16 @@ export function MovieCard({
       body: JSON.stringify(data),
     };
 
-    fetch(url, options);
+    await fetch(url, options);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     if (selectedWatchlist.movies.includes(id)) {
-      removeMovieFromWatchlists();
+      await removeMovieFromWatchlists();
     } else {
-      addMovieToWatchlists();
+      await addMovieToWatchlists();
     }
+    triggerWatchlistRefetch();
   };
 
   const buttonText = (): string => {
