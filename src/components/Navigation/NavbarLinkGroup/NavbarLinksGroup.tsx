@@ -8,6 +8,8 @@ import {
   UnstyledButton,
   rem,
   Checkbox,
+  Space,
+  Divider,
 } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons-react";
 
@@ -25,6 +27,7 @@ interface LinksGroupProps {
   link: string;
   links: { label: string; link: string; icon: unknown; data: any }[];
   buttons: { label: string; link: string; icon: unknown }[];
+  createNewWatchlistButton: JSX.Element;
 }
 
 export function LinksGroup({
@@ -33,6 +36,7 @@ export function LinksGroup({
   initiallyOpened,
   buttons,
   links,
+  createNewWatchlistButton,
 }: LinksGroupProps) {
   const nav = useNavigate();
   const [opened, setOpened] = useState(initiallyOpened || false);
@@ -62,34 +66,6 @@ export function LinksGroup({
         icon={linkItem.icon}
         checked={selectedWatchlist.id === linkItem.data.id}
         onClick={() => setSelectedWatchlist(linkItem.data)}
-        size="md"
-      />
-    </div>
-  ));
-
-  const buttonsItems = buttons.map((linkItem) => (
-    <div
-      key={linkItem.label}
-      className="link  flex justify-between items-center rounded-md hover:bg-green-950 hover:border-emerald-900 hover:border-2 hover:border-spacing-2"
-      onClick={(e) => {
-        e.preventDefault();
-        nav(linkItem.link);
-      }}
-      style={{ cursor: "pointer" }}
-    >
-      <Text
-        component="a"
-        fw={600}
-        className="  flex grow justify-start p-3  items-center text-ml h-12"
-      >
-        {linkItem.label}
-      </Text>
-      <Checkbox
-        className="ml-7"
-        icon={linkItem.icon}
-        checked={true}
-        readOnly={true}
-        color="green"
         size="md"
       />
     </div>
@@ -128,7 +104,10 @@ export function LinksGroup({
 
       <Collapse className=" ml flex flex-col" in={opened}>
         {linkItems}
-        {buttonsItems}
+        <Space h="md" />
+        <Divider className="mx-12  " />
+        <Space h="md" />
+        {createNewWatchlistButton}
       </Collapse>
     </>
   );
