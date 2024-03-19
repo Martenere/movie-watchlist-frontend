@@ -1,18 +1,19 @@
 import { useAtom } from "jotai";
 import WatchlistItem from "../../Watchlist/WatchlistItem";
-import { currentWatchlistEdit } from "../../../state/CurrentlyEditingState";
+import {
+  currentWatchlistEdit,
+  currentWatchlistEditDataAtom,
+} from "../../../state/CurrentlyEditingState";
 import { useEffect } from "react";
 import EditWatchlistModal from "./EditWatchlistModal";
 
-export default function WatchlistDetailedView(){
-    const [selectedWatchlist] = useAtom(currentWatchlistEdit)
+export default function WatchlistDetailedView() {
+  const [selectedWatchlist] = useAtom(currentWatchlistEditDataAtom);
 
-    useEffect(() => {},[selectedWatchlist])
-    
-    return (
-        <>
-        <EditWatchlistModal {...selectedWatchlist}/>
-        <WatchlistItem {...selectedWatchlist} />
-        </>
-    )
+  return (
+    <>
+      <EditWatchlistModal {...selectedWatchlist} />
+      <WatchlistItem {...selectedWatchlist} />
+    </>
+  );
 }
