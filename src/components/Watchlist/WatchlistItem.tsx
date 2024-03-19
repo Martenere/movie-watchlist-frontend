@@ -29,7 +29,7 @@ export default function WatchlistItem({
       <Text className="text-gray-600">{user}</Text> <Space h="xl" />
       <Grid dir="col">
         {movies.map((MovieInfoAtom, idx) => (
-          <Suspense key={idx} fallback="Loading Movie...">
+          <Suspense key={MovieInfoAtom} fallback="Loading Movie...">
             <MovieCardFetcher id={MovieInfoAtom} />
           </Suspense>
         ))}
