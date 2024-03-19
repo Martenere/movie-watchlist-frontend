@@ -8,6 +8,8 @@ import {
   UnstyledButton,
   rem,
   Checkbox,
+  Space,
+  Divider,
 } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons-react";
 
@@ -102,6 +104,9 @@ export function LinksGroup({
 
       <Collapse className=" ml flex flex-col" in={opened}>
         {linkItems}
+        <Space h="md" />
+        <Divider className="mx-12  " />
+        <Space h="md" />
         {createNewWatchlistButton}
       </Collapse>
     </>

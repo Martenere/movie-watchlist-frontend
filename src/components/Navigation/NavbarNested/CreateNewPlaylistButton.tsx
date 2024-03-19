@@ -43,7 +43,7 @@ export default function CreateNewPlaylistButton() {
   return (
     <div
       key={linkItem.label}
-      className="link  flex justify-between items-center rounded-md hover:bg-green-950 hover:border-emerald-900 hover:border-2 hover:border-spacing-2"
+      className="link  flex justify-between items-center hover:bg-green-950 hover:outline-emerald-900 hover:outline hover:outline-2"
       onClick={handleClick}
       style={{ cursor: "pointer" }}
     >
