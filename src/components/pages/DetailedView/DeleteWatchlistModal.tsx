@@ -4,31 +4,28 @@ import { useEffect, useMemo, useState } from "react";
 import { BASE_URL } from "../../../../utils/globalVariables";
 import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
 import { useAtom } from "jotai";
-import { isEditModalActiveAtom } from "./MoreOptionsAtoms";
+import { isDeletModalActiveAtom} from "./MoreOptionsAtoms";
+import { useNavigate } from 'react-router-dom';
 
-export default function EditWatchlistModal( {
+export default function DeleteWatchlistModal( {
   id,
   name,
-  description,
 }: WatchlistItemProps){
-    const INTIAL_FORMDATA = useMemo(() => ({name: name, description: description}) , [description, name])
+    const INTIAL_FORMDATA = useMemo(() => ({name: ""}) , [name])
     const [formData, setFormData] = useState(INTIAL_FORMDATA)
     const [,refreshWatchlists] = useAtom(triggerWatchlistsRefetchAtom)
-    const [isActive, setIsActive] = useAtom(isEditModalActiveAtom)
+    const [isActive, setIsActive] = useAtom(isDeletModalActiveAtom)
+    const navigate = useNavigate()
 
-    const putWatchlistMetaData = async () =>{
+    let formError = false
+
+    const deleteWatchlistMetaData = async () =>{
         const url = `${BASE_URL}/watchlists/${id}`;
-        const data = {
-        name: formData.name,
-        description: formData.description,
-        };
-
         const options = {
-        method: "PUT",
+        method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
         };
 
         await fetch(url, options);
@@ -41,9 +38,18 @@ export default function EditWatchlistModal( {
 
     const handleSubmit = async (e) => {
       e.preventDefault()
-      await putWatchlistMetaData()
-      refreshWatchlists()
-      close()
+      if(formData.name === name){
+        await deleteWatchlistMetaData()
+        .then((res) => {
+          console.log(res);
+          setIsActive(false)
+          navigate("/")})
+        .catch(()=>console.log("error"));
+        refreshWatchlists()
+      } else{
+        formError = true
+        console.log("Changed form error", formError); 
+      }
     }
 
     useEffect(() => {setFormData(INTIAL_FORMDATA)},[INTIAL_FORMDATA])
@@ -54,27 +60,18 @@ export default function EditWatchlistModal( {
         setIsActive(false)
         setFormData(INTIAL_FORMDATA)
         }} 
-        title="Edit details">
+        title={`Delete: ${name}`}>
         <Box maw={340} mx="auto">
           <form onSubmit={handleSubmit}>
             <TextInput
-              withAsterisk
-              label="Name"
+              label="Enter the name of the playlist to delete"
               name="name"
-              value={formData.name}
+              placeholder={name}
               onChange={handleChange}
+              autoComplete='off'
             />
-            <TextInput
-              withAsterisk
-              label="Description"
-              name="description"
-              placeholder="Enter a description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-
             <Group justify="flex-end" mt="md">
-              <Button type="submit">Save</Button>
+              <Button className='disabled:bg-slate-500 bg-red-700' type="submit" disabled={formData.name !== name}>Delete</Button>
             </Group>
           </form>
         </Box>

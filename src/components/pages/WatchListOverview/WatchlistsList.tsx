@@ -1,10 +1,9 @@
 import { useAtom } from "jotai";
 
 import { watchlistsFromApiAtom } from "../../../state/watchlistsState";
-import WatchlistItem, {
-  WatchlistItemProps,
-} from "../../Watchlist/WatchlistItem";
+import { WatchlistItemProps } from "../../Watchlist/WatchlistItem";
 import { Divider } from "@mantine/core";
+import WatchlistItemCard from "./WatchlistItemCard";
 
 export default function WatchlistsList() {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -22,10 +21,10 @@ export default function WatchlistsList() {
 
   return (
     <div>
-      {watchlists.map((w) => (
-        <div key={w.id}>
+      {watchlists.map((watchlist) => (
+        <div key={watchlist.id}>
           <Divider my="md" />
-          <WatchlistItem {...w} />
+          <WatchlistItemCard watchlist={watchlist} />
         </div>
       ))}
     </div>

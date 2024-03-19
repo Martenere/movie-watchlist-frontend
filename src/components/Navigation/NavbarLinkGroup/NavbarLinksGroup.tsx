@@ -34,7 +34,7 @@ export function LinksGroup({
   icon: Icon,
   label,
   initiallyOpened,
-  buttons,
+  // buttons,
   links,
   createNewWatchlistButton,
 }: LinksGroupProps) {
@@ -53,7 +53,7 @@ export function LinksGroup({
         fw={600}
         className=" link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12"
         onClick={(e) => {
-          //e.preventDefault();
+          e.preventDefault();
           setSelectedWatchlist(linkItem.data)
           nav(linkItem.link);
         }}
@@ -61,7 +61,7 @@ export function LinksGroup({
       >
         {linkItem.label}
       </Text>
-      {/* <Text>{linkItem.data.movies.length}</Text> */}
+      <Text>{linkItem.data.movies.length}</Text>
       <Checkbox
         className="ml-7"
         icon={linkItem.icon}

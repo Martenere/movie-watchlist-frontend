@@ -20,7 +20,7 @@ export function NavbarLink({
   const nav = useNavigate();
 
   const handleClick = () => {
-    console.log(link);
+    // console.log(link);
     nav(link);
   };
 

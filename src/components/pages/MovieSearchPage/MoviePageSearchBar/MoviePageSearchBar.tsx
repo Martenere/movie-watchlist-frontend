@@ -26,7 +26,6 @@ export default function MoviePageSearchBar() {
 
   //  Set value of form
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Value: ", event.target.value);
     setValue({ ...value, title: event.target.value });
   };
 

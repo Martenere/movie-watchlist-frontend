@@ -1,6 +1,5 @@
 import { Checkbox, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../../../utils/globalVariables";
 import { useAtom } from "jotai";
