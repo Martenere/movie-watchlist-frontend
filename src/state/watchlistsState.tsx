@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { transformMovieData } from "../components/pages/MovieSearchPage/MovieCardList";
 import { BASE_URL } from "../../utils/globalVariables";
 
 const watchlistUrlAtom = atom(BASE_URL + "/watchlists");
@@ -34,14 +33,14 @@ const translateData = (ApiData: ApiWatchlistData): WatchlistData => {
 };
 
 export const watchlistsFromApiAtom = atom(async (get) => {
-  get(refetchWatchlistTriggerAtom);
+  get(watchlistRefetchAtom);
   return getWatchlistDataFromApi(get(watchlistUrlAtom));
 });
 
-export const refetchWatchlistTriggerAtom = atom(0);
-export const triggerRefetchAtom = atom(null, (get, set) => {
-  const count = get(refetchWatchlistTriggerAtom);
-  set(refetchWatchlistTriggerAtom, count + 1);
+export const watchlistRefetchAtom = atom(0);
+export const triggerWatchlistsRefetchAtom = atom(null, (get, set) => {
+  const count = get(watchlistRefetchAtom);
+  set(watchlistRefetchAtom, count + 1);
 });
 
 async function getWatchlistDataFromApi(url: string) {

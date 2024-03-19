@@ -6,6 +6,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import MovieSearchPage from "./components/pages/MovieSearchPage/MovieSearchPage";
 import WatchlistOverview from "./components/pages/WatchListOverview/WatchlistOverview";
 import { Suspense } from "react";
+import WatchlistDetailedView from "./components/pages/DetailedView/WatchlistDetailedView";
 
 export default function app() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -38,7 +39,7 @@ export default function app() {
           <Route path="/home" element={<WatchlistOverview />} />
           <Route
             path="/watchlists/:id"
-            element={<div>specific watchlist</div>}
+            element={<WatchlistDetailedView/>}
           />
           <Route path="/search-for-movies" element={<MovieSearchPage />} />
           <Route

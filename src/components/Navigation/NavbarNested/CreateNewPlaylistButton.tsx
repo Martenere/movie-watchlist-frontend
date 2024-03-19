@@ -4,7 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../../../utils/globalVariables";
 import { useAtom } from "jotai";
-import { triggerRefetchAtom } from "../../../state/watchlistsState";
+import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
 
 const linkItem = {
   label: "Create new playlist",
@@ -14,7 +14,7 @@ const linkItem = {
 
 export default function CreateNewPlaylistButton() {
   const nav = useNavigate();
-  const [, triggerWatchlistRefetch] = useAtom(triggerRefetchAtom);
+  const [, triggerWatchlistRefetch] = useAtom(triggerWatchlistsRefetchAtom);
 
   const createNewPlaylist = async () => {
     const url = BASE_URL + "/watchlists";
