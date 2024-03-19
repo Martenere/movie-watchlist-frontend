@@ -10,7 +10,8 @@ import {
 } from "@mantine/core";
 import "./MovieCard.css";
 import { useAtom } from "jotai";
-import { currentWatchlistEditIndex } from "../../../state/CurrentlyEditingState";
+import { currentWatchlistEdit } from "../../../state/CurrentlyEditingState";
+import { BASE_URL } from "../../../../utils/globalVariables";
 
 export interface MovieCardProps {
   id: number;
@@ -29,7 +30,7 @@ export function MovieCard({
   country,
   badges,
 }: MovieCardProps) {
-  const [watchlistId,] = useAtom(currentWatchlistEditIndex)
+  const [selectedWatchlist] = useAtom(currentWatchlistEdit);
 
   const features = badges.map((badge) => (
     <Badge variant="light" key={badge.label} leftSection={badge.emoji}>
@@ -38,23 +39,61 @@ export function MovieCard({
   ));
 
   const addMovieToWatchlists = () => {
-    const baseUrl = "https://localhost:32780"
-    const url = `${baseUrl}/watchlists/${watchlistId}/movies/add`;
+    const url = `${BASE_URL}/watchlists/${selectedWatchlist.id}/movies/add`;
     const data = {
       movieId: id,
-      movieName: title
-    }
-    
+      movieName: title,
+    };
+
     const options = {
       method: "PUT",
       headers: {
-        'Content-Type': "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     };
 
-    fetch(url, options)
-  }
+    fetch(url, options);
+  };
+
+  const removeMovieFromWatchlists = () => {
+    const url = `${BASE_URL}/watchlists/${selectedWatchlist.id}/movies/remove`;
+    const data = {
+      movieId: id,
+      //TODO remove movieName from delete payload in API
+      movieName: title,
+    };
+
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options);
+  };
+
+  const handleButtonClick = () => {
+    if (selectedWatchlist.movies.includes(id)) {
+      removeMovieFromWatchlists();
+    } else {
+      addMovieToWatchlists();
+    }
+  };
+
+  const buttonText = (): string => {
+    if (selectedWatchlist.id === -1) {
+      return "Select a playlist";
+    }
+
+    if (selectedWatchlist.movies.includes(id)) {
+      return "Delete from watchlist";
+    }
+
+    return "Add to watchlist";
+  };
 
   return (
     <Card withBorder radius="md" p="md" className="card">
@@ -86,8 +125,8 @@ export function MovieCard({
       </Card.Section>
 
       <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }} onClick={addMovieToWatchlists}>
-          Add to watchlist
+        <Button radius="md" style={{ flex: 1 }} onClick={handleButtonClick}>
+          {buttonText()}
         </Button>
         <ActionIcon variant="default" radius="md" size={36}>
           <IconHeart className="like" stroke={1.5} />
