@@ -48,6 +48,12 @@ export function LinksGroup({
     setSelectedWatchlistIndex(linkItem.data.id);
   };
 
+  const handleWatchlistTitleClick = (event, linkItem) => {
+    event.preventDefault();
+    setSelectedWatchlistIndex(linkItem.data.id);
+    nav(linkItem.link);
+  };
+
   const linkItems = links.map((linkItem) => (
     <div
       key={linkItem.data.id}
@@ -57,10 +63,7 @@ export function LinksGroup({
         component="a"
         fw={600}
         className=" link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12"
-        onClick={(e) => {
-          e.preventDefault();
-          nav(linkItem.link);
-        }}
+        onClick={(event) => handleWatchlistTitleClick(event, linkItem)}
         style={{ cursor: "pointer" }}
       >
         {linkItem.label}
