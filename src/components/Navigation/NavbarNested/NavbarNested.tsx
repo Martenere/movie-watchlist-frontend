@@ -17,7 +17,7 @@ import {
 } from "../../../state/watchlistsState";
 import CreateNewPlaylistButton from "./CreateNewPlaylistButton";
 
-const mockdata = [
+const mainButtons = [
   {
     label: "Home",
     icon: IconHome,
@@ -35,9 +35,7 @@ const MyWatchLists = (links) => {
     label: "My Watchlists",
     icon: IconStar,
     initiallyOpened: true,
-
     links: links,
-
     buttons: [],
     createNewWatchlistButton: CreateNewPlaylistButton(),
   };
@@ -54,9 +52,11 @@ const generateWatchlistLink = (watchlistData: WatchlistData) => {
 
 export function NavbarNested() {
   const [watchlists, _] = useAtom(watchlistsFromApiAtom);
-  const navLinks = mockdata.map((item) => (
+
+  const mainNavLinks = mainButtons.map((item) => (
     <NavbarLink {...item} key={item.label} />
   ));
+
   const watchlistLinks = watchlists.map((watchlist) =>
     generateWatchlistLink(watchlist)
   );
@@ -65,11 +65,10 @@ export function NavbarNested() {
     <nav className="navbar">
       <ScrollArea className="links">
         <div className="linksInner flex flex-col gap-6 p-4">
-          {navLinks}
+          {mainNavLinks}
           <LinksGroup {...MyWatchLists(watchlistLinks)} />
         </div>
       </ScrollArea>
-
       <div className="footer"></div>
     </nav>
   );

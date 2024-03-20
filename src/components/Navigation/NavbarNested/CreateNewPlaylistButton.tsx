@@ -1,43 +1,20 @@
 import { Checkbox, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../../../utils/globalVariables";
 import { useAtom } from "jotai";
-import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
+import { isCreateModalActiveAtom } from "../../pages/DetailedView/MoreOptionsAtoms";
 
 const linkItem = {
-  label: "Create new playlist",
+  label: "Create new watchlist",
   link: "/create-new-watchlist",
   icon: IconPlus,
 };
 
 export default function CreateNewPlaylistButton() {
-  const nav = useNavigate();
-  const [, triggerWatchlistRefetch] = useAtom(triggerWatchlistsRefetchAtom);
-
-
-  const createNewPlaylist = async () => {
-    const url = BASE_URL + "/watchlists";
-    const newWatchlistData = {
-      name: "New Watchlist (button)",
-      description:
-        "A new watchlist created from pressing the button in the interface",
-      userId: 0,
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newWatchlistData),
-    };
-    await fetch(url, options);
-  };
+  const [, setIsCreateFormActive] = useAtom(isCreateModalActiveAtom);
 
   const handleClick = async (e) => {
     e.preventDefault();
-    await createNewPlaylist();
-    triggerWatchlistRefetch();
+    setIsCreateFormActive(true);
   };
 
   return (
@@ -57,7 +34,7 @@ export default function CreateNewPlaylistButton() {
       <Checkbox
         className="ml-7"
         icon={linkItem.icon}
-        checked={true}
+        defaultChecked={true}
         readOnly={true}
         color="green"
         size="md"

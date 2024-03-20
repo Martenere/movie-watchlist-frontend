@@ -19,7 +19,7 @@ export default function MoviePageSearchBar() {
 
   // Set searchstring when debounce value is changed, to limit requests to server
   useEffect(() => {
-    console.log("debounced: ", debouncedSearchValue.title);
+    //console.log("debounced: ", debouncedSearchValue.title);
     setSearchInputAtom(debouncedSearchValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchValue]);
