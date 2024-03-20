@@ -37,7 +37,7 @@ export function LinksGroup({
   icon: Icon,
   label,
   initiallyOpened,
-  buttons,
+  // buttons,
   links,
   createNewWatchlistButton,
 }: LinksGroupProps) {

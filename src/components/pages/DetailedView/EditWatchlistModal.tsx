@@ -1,10 +1,10 @@
-import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, TextInput, Group, Box } from "@mantine/core";
+import { Modal, Button, TextInput, Group, Box, Menu } from "@mantine/core";
 import { WatchlistItemProps } from "../../Watchlist/WatchlistItem";
 import { useEffect, useMemo, useState } from "react";
 import { BASE_URL } from "../../../../utils/globalVariables";
 import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
 import { useAtom } from "jotai";
+import { isEditModalActiveAtom } from "./MoreOptionsAtoms";
 
 export default function EditWatchlistModal({
   id,
@@ -15,9 +15,9 @@ export default function EditWatchlistModal({
     () => ({ name: name, description: description }),
     [description, name]
   );
-  const [opened, { open, close }] = useDisclosure(false);
   const [formData, setFormData] = useState(INTIAL_FORMDATA);
   const [, refreshWatchlists] = useAtom(triggerWatchlistsRefetchAtom);
+  const [isActive, setIsActive] = useAtom(isEditModalActiveAtom);
 
   const putWatchlistMetaData = async () => {
     const url = `${BASE_URL}/watchlists/${id}`;
@@ -47,7 +47,6 @@ export default function EditWatchlistModal({
     await putWatchlistMetaData();
     refreshWatchlists();
     close();
-    console.log("Putting new title, descriptions", formData);
   };
 
   useEffect(() => {
@@ -57,9 +56,9 @@ export default function EditWatchlistModal({
   return (
     <>
       <Modal
-        opened={opened}
+        opened={isActive}
         onClose={() => {
-          close();
+          setIsActive(false);
           setFormData(INTIAL_FORMDATA);
         }}
         title="Edit details"
@@ -88,8 +87,6 @@ export default function EditWatchlistModal({
           </form>
         </Box>
       </Modal>
-
-      <Button onClick={open}>Open modal</Button>
     </>
   );
 }

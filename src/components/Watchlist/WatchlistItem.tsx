@@ -20,19 +20,14 @@ export default function WatchlistItem({
   description,
   movies,
 }: WatchlistItemProps) {
-  console.log("watchlist movies", movies);
+
   if(!movies){
     return (<p>no movies</p>)
   }
   
-  
   return (
-    <div className="bg-gray-900 p-4 rounded-md">
-      <Title className="text-gray-300" order={1}>
-        {name}
-      </Title>
-      <Text className="text-gray-600">{description}</Text>
-      <Text className="text-gray-600">{user}</Text> <Space h="xl" />
+    <>
+
       <Grid dir="col">
         {movies.map((movieId) => (
           <Suspense key={movieId} fallback="Loading Movie...">
@@ -40,7 +35,7 @@ export default function WatchlistItem({
           </Suspense>
         ))}
       </Grid>
-      <Space h="xl" />
-    </div>
+      {/* <Space h="xl" /> */}
+    </>
   );
 }
