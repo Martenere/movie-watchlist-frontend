@@ -7,6 +7,7 @@ import {
   Badge,
   Button,
   ActionIcon,
+  Space,
 } from "@mantine/core";
 import "./MovieCard.css";
 import { useAtom } from "jotai";
@@ -114,12 +115,15 @@ export function MovieCard({
     : "border-green-600 hover:bg-green-700 ";
 
   return (
-    <Card withBorder radius="md" p="md" className={cardClasses}>
+    <Card withBorder radius="md" p="md" className={`${cardClasses}`}>
       <Card.Section>
-        <Image className="max-h-50 " src={image} alt={title} height={200} />
+        <Image className="max-h-72" src={image} alt={title} />
       </Card.Section>
 
-      <Card.Section className="section" mt="md">
+      <Card.Section
+        className="section overflow-hidden max-h-40 min-h-40 text-ellipsis flex flex-col"
+        mt="md"
+      >
         <Group justify="apart">
           <Text fz="lg" fw={500}>
             {title}

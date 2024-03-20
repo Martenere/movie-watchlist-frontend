@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { movieSearchResultAtom } from "../../../state/movieSearchState";
 import { MovieCard, MovieCardProps } from "./MovieCard";
 import { ApiMovieData } from "./MovieSearchPage";
-import { Grid } from "@mantine/core";
+import { Flex, Grid } from "@mantine/core";
 
 export function transformMovieData(data: ApiMovieData): MovieCardProps {
   return {
@@ -41,13 +41,22 @@ export default function MovieCardList() {
           <p className="text-6xl text-center">Begin typing to find movies</p>
         </div>
       )}
-      <Grid>
+      {/* <Grid> */}
+      <Flex
+        mih={50}
+        gap="lg"
+        justify="flex-start"
+        align="flex-start"
+        direction="row"
+        wrap="wrap"
+      >
         {movieCardData.map((props: MovieCardProps) => (
-          <Grid.Col span={3} key={props.id}>
-            <MovieCard {...props} />
-          </Grid.Col>
+          // <Grid.Col span={3} key={props.id}>
+          <MovieCard {...props} />
+          // </Grid.Col>
         ))}
-      </Grid>{" "}
+      </Flex>
+      {/* </Grid> */}{" "}
     </>
   );
 }
