@@ -11,12 +11,7 @@ interface NavbarLinkProps {
   link: string;
 }
 
-export function NavbarLink({
-  icon: Icon,
-  label,
-
-  link,
-}: NavbarLinkProps) {
+export function NavbarLink({ icon: Icon, label, link }: NavbarLinkProps) {
   const nav = useNavigate();
 
   const handleClick = () => {

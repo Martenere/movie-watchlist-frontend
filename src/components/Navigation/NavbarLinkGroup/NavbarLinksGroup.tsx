@@ -16,11 +16,9 @@ import { IconChevronRight } from "@tabler/icons-react";
 import "./NavbarLinksGroup.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  currentWatchlistEditDataAtom,
-  currentWatchlistindexAtom,
-} from "../../../state/CurrentlyEditingState";
+import { currentWatchlistindexAtom } from "../../../state/CurrentlyEditingState";
 import { useAtom } from "jotai";
+import CreateWatchlistModal from "../../pages/DetailedView/CreateWatchlistModal";
 
 interface LinksGroupProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -43,14 +41,10 @@ export function LinksGroup({
 }: LinksGroupProps) {
   const nav = useNavigate();
   const [opened, setOpened] = useState(initiallyOpened || false);
-  // const [selectedWatchlist, setSelectedWatchlist] =
-  //   useAtom(currentWatchlistEdit);
   const [selectedWatchlistIndex, setSelectedWatchlistIndex] = useAtom(
     currentWatchlistindexAtom
   );
-  const [a, b] = useAtom(currentWatchlistEditDataAtom);
   const handleCheckboxClick = (linkItem: LinksGroupProps["links"][number]) => {
-    // setSelectedWatchlist(linkItem.data);
     setSelectedWatchlistIndex(linkItem.data.id);
   };
 
@@ -117,6 +111,7 @@ export function LinksGroup({
         <Space h="md" />
         <Divider className="mx-12  " />
         <Space h="md" />
+        <CreateWatchlistModal />
         {createNewWatchlistButton}
       </Collapse>
     </>

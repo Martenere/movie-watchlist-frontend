@@ -47,12 +47,12 @@ async function getWatchlistDataFromApi(url: string) {
   try {
     const res = await fetch(url);
     const returnData = await res.json();
-    console.log(returnData);
+    //console.log(returnData);
     const data = returnData.map(translateData);
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (error) {
     return [];
-    console.log("Error when fetching watchlist: ", error);
+    //console.log("Error when fetching watchlist: ", error);
   }
 }
