@@ -1,7 +1,7 @@
-import { atom, useAtom } from "jotai";
-import { watchlistData } from "./watchlistsState";
+import { atom } from "jotai";
+import { WatchlistData, watchlistsFromApiAtom } from "./watchlistsState";
 
-const initWatchlistData: watchlistData = {
+const initWatchlistData: WatchlistData = {
   id: -1,
   user: "",
   userId: -1,
@@ -11,4 +11,17 @@ const initWatchlistData: watchlistData = {
   movies: [],
 };
 
-export const currentWatchlistEdit = atom<watchlistData>(initWatchlistData);
+export const currentWatchlistindexAtom = atom(0);
+
+// Atom derived from WatchlistData from api and currentWatchlistindexAtom
+// Outputs all the data of the related Watchlist
+export const currentWatchlistEditDataAtom = atom(async (get) => {
+  const watchlistApiData = await get(watchlistsFromApiAtom);
+  const currentlyEditingWatchlistIndex = get(currentWatchlistindexAtom);
+  const currentWatchlistEditingData = watchlistApiData.find(
+    (watchlist: WatchlistData) =>
+      watchlist.id === currentlyEditingWatchlistIndex
+  );
+  console.log("currentWatchlistEditDataAtom: ", currentWatchlistEditingData);
+  return currentWatchlistEditingData ?? initWatchlistData;
+});

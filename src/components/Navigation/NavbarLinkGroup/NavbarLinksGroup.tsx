@@ -16,7 +16,10 @@ import { IconChevronRight } from "@tabler/icons-react";
 import "./NavbarLinksGroup.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { currentWatchlistEdit } from "../../../state/CurrentlyEditingState";
+import {
+  currentWatchlistEditDataAtom,
+  currentWatchlistindexAtom,
+} from "../../../state/CurrentlyEditingState";
 import { useAtom } from "jotai";
 
 interface LinksGroupProps {
@@ -40,8 +43,16 @@ export function LinksGroup({
 }: LinksGroupProps) {
   const nav = useNavigate();
   const [opened, setOpened] = useState(initiallyOpened || false);
-  const [selectedWatchlist, setSelectedWatchlist] =
-    useAtom(currentWatchlistEdit);
+  // const [selectedWatchlist, setSelectedWatchlist] =
+  //   useAtom(currentWatchlistEdit);
+  const [selectedWatchlistIndex, setSelectedWatchlistIndex] = useAtom(
+    currentWatchlistindexAtom
+  );
+  const [a, b] = useAtom(currentWatchlistEditDataAtom);
+  const handleCheckboxClick = (linkItem: LinksGroupProps["links"][number]) => {
+    // setSelectedWatchlist(linkItem.data);
+    setSelectedWatchlistIndex(linkItem.data.id);
+  };
 
   const linkItems = links.map((linkItem) => (
     <div
@@ -53,20 +64,19 @@ export function LinksGroup({
         fw={600}
         className=" link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12"
         onClick={(e) => {
-          //e.preventDefault();
-          setSelectedWatchlist(linkItem.data)
+          e.preventDefault();
           nav(linkItem.link);
         }}
         style={{ cursor: "pointer" }}
       >
         {linkItem.label}
       </Text>
-      {/* <Text>{linkItem.data.movies.length}</Text> */}
+      <Text>{linkItem.data.movies.length}</Text>
       <Checkbox
         className="ml-7"
         icon={linkItem.icon}
-        checked={selectedWatchlist.id === linkItem.data.id}
-        onClick={() => setSelectedWatchlist(linkItem.data)}
+        checked={selectedWatchlistIndex === linkItem.data.id}
+        onClick={() => handleCheckboxClick(linkItem)}
         size="md"
       />
     </div>
@@ -86,7 +96,6 @@ export function LinksGroup({
           >
             <ThemeIcon variant="light" size="xl">
               <Icon />
-              {/* <Icon style={{ width: rem(18), height: rem(18) }} /> */}
             </ThemeIcon>
             <Box ml="md">{label}</Box>
           </Box>
@@ -103,7 +112,7 @@ export function LinksGroup({
         </Group>
       </UnstyledButton>
 
-      <Collapse className=" ml flex flex-col" in={opened}>
+      <Collapse className=" ml flex flex-col bir" in={opened}>
         {linkItems}
         <Space h="md" />
         <Divider className="mx-12  " />
