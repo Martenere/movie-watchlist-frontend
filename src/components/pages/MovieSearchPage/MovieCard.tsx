@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import "./MovieCard.css";
 import { useAtom } from "jotai";
-import { currentWatchlistEdit } from "../../../state/CurrentlyEditingState";
+import { currentWatchlistEditDataAtom } from "../../../state/CurrentlyEditingState";
 import { BASE_URL } from "../../../../utils/globalVariables";
 import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
 
@@ -31,7 +31,7 @@ export function MovieCard({
   country,
   badges,
 }: MovieCardProps) {
-  const [selectedWatchlist] = useAtom(currentWatchlistEdit);
+  const [selectedWatchlist] = useAtom(currentWatchlistEditDataAtom);
   const [, triggerWatchlistRefetch] = useAtom(triggerWatchlistsRefetchAtom);
 
   const features = badges.map((badge) => (

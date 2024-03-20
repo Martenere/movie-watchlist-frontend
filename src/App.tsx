@@ -35,16 +35,18 @@ export default function app() {
       </AppShell.Navbar>
 
       <AppShell.Main className="bg-gray-700">
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<WatchlistOverview />} />
-          <Route path="/watchlists/:id" element={<WatchlistDetailedView />} />
-          <Route path="/search-for-movies" element={<MovieSearchPage />} />
-          <Route
-            path="/create-new-watchlist"
-            element={<div>/create-new-watchlist</div>}
-          />
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<WatchlistOverview />} />
+            <Route path="/watchlists/:id" element={<WatchlistDetailedView />} />
+            <Route path="/search-for-movies" element={<MovieSearchPage />} />
+            <Route
+              path="/create-new-watchlist"
+              element={<div>/create-new-watchlist</div>}
+            />
+          </Routes>{" "}
+        </Suspense>
       </AppShell.Main>
     </AppShell>
   );
