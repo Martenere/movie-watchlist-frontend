@@ -56,7 +56,7 @@ export function LinksGroup({
 
   const linkItems = links.map((linkItem) => (
     <div
-      key={linkItem.label}
+      key={linkItem.data.id}
       className="link flex justify-between items-center"
     >
       <Text
@@ -76,7 +76,7 @@ export function LinksGroup({
         className="ml-7"
         icon={linkItem.icon}
         checked={selectedWatchlistIndex === linkItem.data.id}
-        onClick={() => handleCheckboxClick(linkItem)}
+        onChange={() => handleCheckboxClick(linkItem)}
         size="md"
       />
     </div>

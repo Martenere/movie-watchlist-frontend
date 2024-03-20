@@ -3,6 +3,7 @@
     var(--mantine-color-white),
     var(--mantine-color-dark-7)
   );
+  max-width: 14rem;
 }
 
 .section {
@@ -23,4 +24,11 @@
   text-transform: uppercase;
   font-size: var(--mantine-font-size-xs);
   font-weight: 700;
+}
+
+#movie-card-button.in-watch-list:hover {
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 }

@@ -12,7 +12,10 @@ import "./MovieCard.css";
 import { useAtom } from "jotai";
 import { currentWatchlistEditDataAtom } from "../../../state/CurrentlyEditingState";
 import { BASE_URL } from "../../../../utils/globalVariables";
-import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
+import {
+  WatchlistData,
+  triggerWatchlistsRefetchAtom,
+} from "../../../state/watchlistsState";
 
 export interface MovieCardProps {
   id: number;
@@ -33,6 +36,10 @@ export function MovieCard({
 }: MovieCardProps) {
   const [selectedWatchlist] = useAtom(currentWatchlistEditDataAtom);
   const [, triggerWatchlistRefetch] = useAtom(triggerWatchlistsRefetchAtom);
+  const [watchlistData]: [WatchlistData, never] = useAtom(
+    currentWatchlistEditDataAtom
+  );
+  const movieIsInWatchlist: boolean = selectedWatchlist.movies.includes(id);
 
   const features = badges.map((badge) => (
     <Badge variant="light" key={badge.label} leftSection={badge.emoji}>
@@ -78,7 +85,7 @@ export function MovieCard({
   };
 
   const handleButtonClick = async () => {
-    if (selectedWatchlist.movies.includes(id)) {
+    if (movieIsInWatchlist) {
       await removeMovieFromWatchlists();
     } else {
       await addMovieToWatchlists();
@@ -86,22 +93,30 @@ export function MovieCard({
     triggerWatchlistRefetch();
   };
 
-  const buttonText = (): string => {
+  const buttonText: () => [string, string] = () => {
     if (selectedWatchlist.id === -1) {
-      return "Select a playlist";
+      return ["Select a playlist", ""];
     }
 
-    if (selectedWatchlist.movies.includes(id)) {
-      return "Delete from watchlist";
+    if (movieIsInWatchlist) {
+      return ["Remove from ", watchlistData.name];
     }
 
-    return "Add to watchlist";
+    return ["Add to ", watchlistData.name];
   };
 
+  const cardClasses: string = movieIsInWatchlist
+    ? "card outline-green-600 outline outline-2"
+    : "card";
+
+  const buttonClasses: string = movieIsInWatchlist
+    ? "in-watch-list hover:outline hover:outline-1 hover:outline-red-800"
+    : "border-green-600 hover:bg-green-700 ";
+
   return (
-    <Card withBorder radius="md" p="md" className="card">
+    <Card withBorder radius="md" p="md" className={cardClasses}>
       <Card.Section>
-        <Image className="max-h-44 " src={image} alt={title} height={180} />
+        <Image className="max-h-50 " src={image} alt={title} height={200} />
       </Card.Section>
 
       <Card.Section className="section" mt="md">
@@ -127,9 +142,18 @@ export function MovieCard({
         </Group>
       </Card.Section>
 
-      <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }} onClick={handleButtonClick}>
-          {buttonText()}
+      <Group mt="xs" className="flex" style={{ maxWidth: "100%" }}>
+        <Button
+          id="movie-card-button"
+          className={`${buttonClasses} min-h-20`}
+          radius="md"
+          style={{ flex: 1 }}
+          onClick={handleButtonClick}
+        >
+          <div className="whitespace-normal flex-grow">
+            <Text size="xs">{buttonText()[0]}</Text>
+            {buttonText()[1] && <Text fw={700}>'{buttonText()[1]}'</Text>}
+          </div>
         </Button>
         <ActionIcon variant="default" radius="md" size={36}>
           <IconHeart className="like" stroke={1.5} />
