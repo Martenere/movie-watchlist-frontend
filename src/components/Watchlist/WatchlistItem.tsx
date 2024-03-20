@@ -20,19 +20,19 @@ export default function WatchlistItem({
   description,
   movies,
 }: WatchlistItemProps) {
-
-  if(!movies){
-    return (<p>no movies</p>)
+  if (!movies) {
+    return <p>no movies</p>;
   }
-  
+
   return (
     <>
-
-      <Grid dir="col">
+      <Grid dir="col" grow justify="flex-start">
         {movies.map((movieId) => (
-          <Suspense key={movieId} fallback="Loading Movie...">
-            <MovieCardFetcher id={movieId} />
-          </Suspense>
+          <Grid.Col span={2}>
+            <Suspense key={movieId} fallback="Loading Movie...">
+              <MovieCardFetcher id={movieId} />
+            </Suspense>
+          </Grid.Col>
         ))}
       </Grid>
       {/* <Space h="xl" /> */}
