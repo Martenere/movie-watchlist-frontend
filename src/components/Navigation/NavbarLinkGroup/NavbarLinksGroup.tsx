@@ -70,7 +70,9 @@ export function LinksGroup({
         className="ml-7"
         icon={linkItem.icon}
         checked={selectedWatchlistIndex === linkItem.data.id}
-        onChange={() => handleCheckboxClick(linkItem)}
+        onChange={() => {
+          handleCheckboxClick(linkItem);
+        }}
         size="md"
       />
     </div>

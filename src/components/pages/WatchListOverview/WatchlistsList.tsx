@@ -7,9 +7,11 @@ import WatchlistItemCard from "./WatchlistItemCard";
 
 export default function WatchlistsList() {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  const [watchlists, _]: [WatchlistItemProps[], Function] = useAtom(
+  const [watchlists]: [WatchlistItemProps[], Function] = useAtom(
     watchlistsFromApiAtom
   );
+
+  console.log("watchlists", watchlists);
 
   if (!watchlists) {
     return (

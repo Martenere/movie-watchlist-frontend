@@ -14,10 +14,10 @@ export interface WatchlistItemProps {
 }
 
 export default function WatchlistItem({
-  id,
-  user,
-  name,
-  description,
+  //id,
+  //user,
+  //name,
+  //description,
   movies,
 }: WatchlistItemProps) {
   if (!movies) {

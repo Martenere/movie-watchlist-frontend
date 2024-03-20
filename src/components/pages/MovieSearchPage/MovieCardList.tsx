@@ -1,9 +1,8 @@
 import { useAtom } from "jotai";
-
 import { movieSearchResultAtom } from "../../../state/movieSearchState";
 import { MovieCard, MovieCardProps } from "./MovieCard";
 import { ApiMovieData } from "./MovieSearchPage";
-import { Flex, Grid } from "@mantine/core";
+import { Flex } from "@mantine/core";
 
 export function transformMovieData(data: ApiMovieData): MovieCardProps {
   return {

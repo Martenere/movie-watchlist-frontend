@@ -33,8 +33,11 @@ const translateData = (ApiData: ApiWatchlistData): WatchlistData => {
 };
 
 export const watchlistsFromApiAtom = atom(async (get) => {
+  console.log("wathclistFromApiAtom");
   get(watchlistRefetchAtom);
-  return getWatchlistDataFromApi(get(watchlistUrlAtom));
+  const getResult = await getWatchlistDataFromApi(get(watchlistUrlAtom));
+  console.log("Get result", getResult);
+  return getResult;
 });
 
 export const watchlistRefetchAtom = atom(0);
@@ -47,9 +50,9 @@ async function getWatchlistDataFromApi(url: string) {
   try {
     const res = await fetch(url);
     const returnData = await res.json();
-    //console.log(returnData);
+    console.log("Return data", returnData);
     const data = returnData.map(translateData);
-    //console.log(data);
+    console.log("Data", data);
     return data;
   } catch (error) {
     return [];
