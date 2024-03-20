@@ -7,6 +7,7 @@ import MovieSearchPage from "./components/pages/MovieSearchPage/MovieSearchPage"
 import WatchlistOverview from "./components/pages/WatchListOverview/WatchlistOverview";
 import { Suspense } from "react";
 import WatchlistDetailedView from "./components/pages/DetailedView/WatchlistDetailedView";
+import Banner from "./components/Banner/Banner";
 
 export default function app() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -14,7 +15,7 @@ export default function app() {
 
   return (
     <AppShell
-      header={{ height: 60 }}
+      header={{ height: 70 }}
       navbar={{
         width: 300,
         breakpoint: "sm",
@@ -22,9 +23,9 @@ export default function app() {
       }}
       padding="md"
     >
-      <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <div>Logo</div>
+      <AppShell.Header className="flex py-1">
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="lg" />
+        <Banner />
       </AppShell.Header>
 
       <AppShell.Navbar p="0">
