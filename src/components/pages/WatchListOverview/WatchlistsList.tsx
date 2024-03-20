@@ -23,8 +23,8 @@ export default function WatchlistsList() {
     <div>
       {watchlists.map((watchlist) => (
         <div key={watchlist.id}>
-          <Divider my="md" />
           <WatchlistItemCard watchlist={watchlist} />
+          <Divider my="md" />
         </div>
       ))}
     </div>
