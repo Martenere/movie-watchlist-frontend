@@ -46,7 +46,10 @@ export default function EditWatchlistModal({
     e.preventDefault();
     await putWatchlistMetaData();
     refreshWatchlists();
+<<<<<<< HEAD
     setIsActive(false);
+=======
+>>>>>>> main
   };
 
   useEffect(() => {
