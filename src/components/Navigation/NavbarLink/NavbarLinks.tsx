@@ -32,7 +32,6 @@ export function NavbarLink({ icon: Icon, label, link }: NavbarLinkProps) {
           >
             <ThemeIcon variant="light" size="xl">
               <Icon />
-              {/* <Icon style={{ width: rem(18), height: rem(18) }} /> */}
             </ThemeIcon>
             <Box ml="md" style={{fontSize:'20px', fontWeight: 700}} >{label}</Box>
           </Box>

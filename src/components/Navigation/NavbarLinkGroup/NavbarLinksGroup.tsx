@@ -10,6 +10,8 @@ import {
   Checkbox,
   Space,
   Divider,
+  MantineProvider,
+  createTheme,
 } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons-react";
 
@@ -60,10 +62,11 @@ export function LinksGroup({
       key={linkItem.data.id}
       className="link flex justify-between items-center "
     >
+      <div className={`link-text flex flex-row items-center justify-between w-full pr-2  rounded-md ${location.pathname.includes(linkItem.link) ? 'bg-slate-700' : ''}`}>
       <Text
         component="a"
         fw={600}
-        className={`link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12 mr-4 ${location.pathname.includes(linkItem.link) ? 'bg-slate-700' : ''}`}
+        className={`flex grow justify-start p-3 rounded-md items-center text-ml h-12 mr-4 `}
         onClick={(event) => handleWatchlistTitleClick(event, linkItem)}
         style={{ cursor: "pointer" }}
       >
@@ -71,12 +74,13 @@ export function LinksGroup({
       </Text>
       <Text>{linkItem.data.movies.length}</Text>
       <Checkbox
-        className="ml-7"
+        className="ml-4"
         icon={linkItem.icon}
         checked={selectedWatchlistIndex === linkItem.data.id}
         onChange={() => handleCheckboxClick(linkItem)}
         size="md"
-      />
+        />
+        </div>
     </div>
   ));
 
@@ -112,8 +116,6 @@ export function LinksGroup({
 
       <Collapse className=" ml flex flex-col bir" in={opened}>
         {linkItems}
-        {/* <Space h="md" /> */}
-        {/* <Divider className="mx-12  " /> */}
         <Space h="md" />
         <CreateWatchlistModal />
         {createNewWatchlistButton}
