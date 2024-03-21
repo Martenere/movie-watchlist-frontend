@@ -20,7 +20,7 @@ export default function CreateWatchlistModal() {
     const data = {
       name: formData.name,
       description: formData.description,
-      userID: 0,
+      userID: 1,
     };
 
     const options = {
