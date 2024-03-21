@@ -57,7 +57,7 @@ export default function CreateWatchlistModal() {
         }}
         title="Create watchlist"
       >
-<WatchlistMetaDataForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} sendButtonText={'Create'}/>
+      <WatchlistMetaDataForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} sendButtonText={'Create'}/>
       </Modal>
     </>
   );

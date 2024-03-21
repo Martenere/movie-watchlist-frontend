@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.root {
+  font: "Comfortaa", sans-serif;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name */
+/* <weight>: Use a value from 300 to 700 */
+body {
+  font-family: "Comfortaa", sans-serif;
+}
+.comfortaa-font {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}

@@ -159,9 +159,6 @@ export function MovieCard({
             {buttonText()[1] && <Text fw={700}>'{buttonText()[1]}'</Text>}
           </div>
         </Button>
-        <ActionIcon variant="default" radius="md" size={36}>
-          <IconHeart className="like" stroke={1.5} />
-        </ActionIcon>
       </Group>
     </Card>
   );
