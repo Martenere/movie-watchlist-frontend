@@ -107,12 +107,12 @@ export function MovieCard({
   };
 
   const cardClasses: string = movieIsInWatchlist
-    ? "card outline-green-600 outline outline-2"
+    ? "card outline-watchlist-green outline outline-2"
     : "card";
 
   const buttonClasses: string = movieIsInWatchlist
     ? "in-watch-list hover:outline hover:outline-1 hover:outline-red-800"
-    : "border-green-600 hover:bg-green-700 ";
+    : "border-watchlist-green hover:bg-watchlist-green ";
 
   return (
     <Card withBorder radius="md" p="md" className={`${cardClasses}`}>
