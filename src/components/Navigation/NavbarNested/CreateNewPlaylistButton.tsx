@@ -1,17 +1,17 @@
-import { Checkbox, Text } from "@mantine/core";
+import { Checkbox, HoverCard, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { useAtom } from "jotai";
 import { isCreateModalActiveAtom } from "../../pages/DetailedView/MoreOptionsAtoms";
 
 const linkItem = {
-  label: "Create new watchlist",
+  label: "New Watchlist",
   link: "/create-new-watchlist",
   icon: IconPlus,
 };
 
 export default function CreateNewPlaylistButton() {
   const [, setIsCreateFormActive] = useAtom(isCreateModalActiveAtom);
-
+ 
   const handleClick = async (e) => {
     e.preventDefault();
     setIsCreateFormActive(true);
@@ -20,9 +20,9 @@ export default function CreateNewPlaylistButton() {
   return (
     <div
       key={linkItem.label}
-      className=" rounded-xl bg-green-700 link -outline-offset-2 flex justify-between items-center hover:bg-green-800 hover:outline-watchlist-green hover:outline hover:outline-2 hover:text-black  hover:shadow-green-950 hover:shadow-inner"
+      className="rounded-xl bg-green-700 link -outline-offset-2 flex justify-between items-center hover:bg-green-800 hover:outline-watchlist-green hover:outline hover:outline-2 hover:text-black  hover:shadow-green-950 hover:shadow-inner hover:cursor-pointer"
       onClick={handleClick}
-      style={{ cursor: "pointer" }}
+      
     >
       <Text
         component="a"
@@ -32,7 +32,7 @@ export default function CreateNewPlaylistButton() {
         {linkItem.label}
       </Text>
       <Checkbox
-        className="ml-7 shadow-green-600 "
+        className="ml-7 shadow-green-600"
         icon={linkItem.icon}
         defaultChecked={true}
         readOnly={true}

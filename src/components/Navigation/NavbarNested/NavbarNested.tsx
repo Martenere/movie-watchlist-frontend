@@ -16,6 +16,8 @@ import {
   watchlistsFromApiAtom,
 } from "../../../state/watchlistsState";
 import CreateNewPlaylistButton from "./CreateNewPlaylistButton";
+import ReelLogo from "../../ReelLogo";
+import { NavLink } from "react-router-dom";
 
 const mainButtons = [
   {
@@ -62,14 +64,16 @@ export function NavbarNested() {
   );
 
   return (
-    <nav className="navbar">
+    <nav className="navbar h-full">
       <ScrollArea className="links">
         <div className="linksInner flex flex-col gap-6 p-4">
           {mainNavLinks}
           <LinksGroup {...MyWatchLists(watchlistLinks)} />
         </div>
       </ScrollArea>
-      <div className="footer"></div>
+      <div className="footer h-20 flex">
+        <ReelLogo/>
+      </div>
     </nav>
   );
 }
