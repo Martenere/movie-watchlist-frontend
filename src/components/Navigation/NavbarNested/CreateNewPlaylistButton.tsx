@@ -20,24 +20,24 @@ export default function CreateNewPlaylistButton() {
   return (
     <div
       key={linkItem.label}
-      className="link  flex justify-between items-center hover:bg-green-950 hover:outline-emerald-900 hover:outline hover:outline-2"
+      className=" rounded-xl bg-green-700 link -outline-offset-2 flex justify-between items-center hover:bg-green-800 hover:outline-watchlist-green hover:outline hover:outline-2 hover:text-black  hover:shadow-green-950 hover:shadow-inner"
       onClick={handleClick}
       style={{ cursor: "pointer" }}
     >
       <Text
         component="a"
         fw={600}
-        className="  flex grow justify-start p-3  items-center text-ml h-12"
+        className="  flex grow justify-start p-3  items-center text-ml h-12 hover:text-black"
       >
         {linkItem.label}
       </Text>
       <Checkbox
-        className="ml-7"
+        className="ml-7 shadow-green-600 "
         icon={linkItem.icon}
         defaultChecked={true}
         readOnly={true}
-        color="green"
         size="md"
+        color="green.4"
       />
     </div>
   );

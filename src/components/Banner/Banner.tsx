@@ -13,8 +13,7 @@ export default function Banner() {
         <Text
           size=""
           fw={900}
-          className="z-10 relative text-3xl text-green-900"
-          c="green"
+          className="z-10 relative text-3xl text-watchlist-green"
         >
           ReelReminder
         </Text>
