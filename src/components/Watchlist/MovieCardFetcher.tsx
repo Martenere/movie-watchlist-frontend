@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { MovieCard, MovieCardProps } from "../pages/MovieSearchPage/MovieCard";
-
-import { Grid } from "@mantine/core";
 import { transformMovieData } from "../pages/MovieSearchPage/MovieCardList";
 
 export default function MovieCardFetcher({ id }) {
@@ -33,8 +31,6 @@ export default function MovieCardFetcher({ id }) {
   }
 
   return (
-    // <Grid.Col span={3}>
     <MovieCard {...movieData} />
-    // </Grid.Col>
   );
 }

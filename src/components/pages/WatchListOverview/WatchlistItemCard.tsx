@@ -15,7 +15,6 @@ export interface WatchlistItemProps {
   userId: number;
   name: string;
   description: string;
-
   movies: number[];
 }
 
@@ -30,7 +29,7 @@ export default function WatchlistItemCard({
 
   return (
     <>
-      <Container className="bg-zinc-900 px-9 pt-9 pb-9 rounded-md max-w-fit flex-grow">
+      <Container className="bg-gray-800  px-9 pt-9 pb-9 rounded-md max-w-fit flex-grow">
         <Group justify="space-between">
           <h1 className="text-gray-300 text-5xl">{name}</h1>{" "}
           <Text className="font-mono text-sm text-opacity-40">
@@ -49,8 +48,8 @@ export default function WatchlistItemCard({
             </Title>
             <Space h="sm" />
 
-            <div className="bg-zinc-700 border-4 border-zinc-100 rounded-md p-4 max-w-xl min-w-96 ">
-              <p className="text-zinc-950 leading-relaxed font-mono text-lg opacity-80">
+            <div className="bg-gray-200 rounded-md p-4 max-w-xl min-w-96">
+              <p className="text-zinc-800 leading-relaxed font-mono text-lg opacity-90">
                 {description}
               </p>
             </div>

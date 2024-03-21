@@ -22,6 +22,5 @@ export const currentWatchlistEditDataAtom = atom(async (get) => {
     (watchlist: WatchlistData) =>
       watchlist.id === currentlyEditingWatchlistIndex
   );
-  //console.log("currentWatchlistEditDataAtom: ", currentWatchlistEditingData);
   return currentWatchlistEditingData ?? initWatchlistData;
 });

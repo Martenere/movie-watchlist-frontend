@@ -34,7 +34,6 @@ async function searchTMDB(url: string) {
   try {
     const res = await fetch(url, options);
     const data = await res.json();
-    //console.log(data);
     return data.results;
   } catch (err) {
     console.error("error:" + err);
