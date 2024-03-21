@@ -17,6 +17,7 @@ import {
 } from "../../../state/watchlistsState";
 import CreateNewPlaylistButton from "./CreateNewPlaylistButton";
 import ReelLogo from "../../ReelLogo";
+import { NavLink } from "react-router-dom";
 
 const mainButtons = [
   {

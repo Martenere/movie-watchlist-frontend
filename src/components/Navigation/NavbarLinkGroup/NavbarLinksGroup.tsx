@@ -15,7 +15,7 @@ import { IconChevronRight } from "@tabler/icons-react";
 
 import "./NavbarLinksGroup.css";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { currentWatchlistindexAtom } from "../../../state/CurrentlyEditingState";
 import { useAtom } from "jotai";
 import CreateWatchlistModal from "../../pages/DetailedView/CreateWatchlistModal";
@@ -40,6 +40,7 @@ export function LinksGroup({
   createNewWatchlistButton,
 }: LinksGroupProps) {
   const nav = useNavigate();
+  const location = useLocation()
   const [opened, setOpened] = useState(initiallyOpened || false);
   const [selectedWatchlistIndex, setSelectedWatchlistIndex] = useAtom(
     currentWatchlistindexAtom
@@ -57,12 +58,12 @@ export function LinksGroup({
   const linkItems = links.map((linkItem) => (
     <div
       key={linkItem.data.id}
-      className="link flex justify-between items-center"
+      className="link flex justify-between items-center "
     >
       <Text
         component="a"
         fw={600}
-        className=" link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12"
+        className={`link-text flex grow justify-start p-3 rounded-md items-center text-ml h-12 mr-4 ${location.pathname.includes(linkItem.link) ? 'bg-slate-700' : ''}`}
         onClick={(event) => handleWatchlistTitleClick(event, linkItem)}
         style={{ cursor: "pointer" }}
       >
@@ -89,7 +90,7 @@ export function LinksGroup({
         <Group justify="space-between" gap={0}>
           <Box
             className="link-text"
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", fontSize:'20px', fontWeight: 700}}
           >
             <ThemeIcon variant="light" size="xl">
               <Icon />
@@ -111,8 +112,8 @@ export function LinksGroup({
 
       <Collapse className=" ml flex flex-col bir" in={opened}>
         {linkItems}
-        <Space h="md" />
-        <Divider className="mx-12  " />
+        {/* <Space h="md" /> */}
+        {/* <Divider className="mx-12  " /> */}
         <Space h="md" />
         <CreateWatchlistModal />
         {createNewWatchlistButton}
