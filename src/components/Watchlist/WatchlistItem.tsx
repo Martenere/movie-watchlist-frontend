@@ -1,4 +1,4 @@
-import { Flex, Grid, Space, Text, Title } from "@mantine/core";
+import { Flex, Grid, SimpleGrid, Space, Text, Title, rem } from "@mantine/core";
 
 import MovieCardFetcher from "./MovieCardFetcher";
 import { Suspense } from "react";
@@ -29,19 +29,24 @@ export default function WatchlistItem({
       <Flex
         mih={50}
         // bg="rgba(0, 0, 0, .3)"
-        gap="lg"
-        justify="flex-start"
+        gap="xl"
+        justify="space-between"
         align="flex-start"
         direction="row"
         wrap="wrap"
+        className="max-w-7xl"
       >
+        {/* <SimpleGrid
+        cols={{ base: 3, sm: 2, lg: 4 }}
+        spacing={{ base: 10, sm: "xl" }}
+        verticalSpacing={{ base: "md", sm: "xl" }}
+      > */}
         {movies.map((movieId) => (
-          // <Grid.Col span={2}>
           <Suspense key={movieId} fallback="Loading Movie...">
             <MovieCardFetcher id={movieId} />
           </Suspense>
-          // </Grid.Col>
         ))}
+        {/* </SimpleGrid> */}
       </Flex>
       {/* <Space h="xl" /> */}
     </>

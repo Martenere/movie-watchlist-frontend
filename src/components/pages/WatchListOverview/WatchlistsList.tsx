@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 
 import { watchlistsFromApiAtom } from "../../../state/watchlistsState";
 import { WatchlistItemProps } from "../../Watchlist/WatchlistItem";
-import { Divider } from "@mantine/core";
+import { Space } from "@mantine/core";
 import WatchlistItemCard from "./WatchlistItemCard";
 
 export default function WatchlistsList() {
@@ -20,11 +20,12 @@ export default function WatchlistsList() {
   }
 
   return (
-    <div>
+    <div className="mx-10 mt-8">
       {watchlists.map((watchlist) => (
         <div key={watchlist.id}>
           <WatchlistItemCard watchlist={watchlist} />
-          <Divider my="md" />
+          <Space h="xl" />
+          <Space h="xl" />
         </div>
       ))}
     </div>
