@@ -41,10 +41,6 @@ export default function app() {
             <Route path="/home" element={<WatchlistOverview />} />
             <Route path="/watchlists/:id" element={<WatchlistDetailedView />} />
             <Route path="/search-for-movies" element={<MovieSearchPage />} />
-            <Route
-              path="/create-new-watchlist"
-              element={<div>/create-new-watchlist</div>}
-            />
           </Routes>{" "}
         </Suspense>
       </AppShell.Main>
