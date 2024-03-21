@@ -1,10 +1,11 @@
-import { Modal, Button, TextInput, Group, Box, Menu } from "@mantine/core";
+import { Modal, Button, TextInput, Group, Box, Menu, Textarea } from "@mantine/core";
 import { WatchlistItemProps } from "../../Watchlist/WatchlistItem";
 import { useEffect, useMemo, useState } from "react";
 import { BASE_URL } from "../../../../utils/globalVariables";
 import { triggerWatchlistsRefetchAtom } from "../../../state/watchlistsState";
 import { useAtom } from "jotai";
 import { isEditModalActiveAtom } from "./MoreOptionsAtoms";
+import WatchlistMetaDataForm from "./WatchlistMetaDataForm";
 
 export default function EditWatchlistModal({
   id,
@@ -63,34 +64,7 @@ export default function EditWatchlistModal({
         }}
         title="Edit details"
       >
-        <Box maw={340} mx="auto">
-          <form onSubmit={handleSubmit}>
-            <TextInput
-              withAsterisk
-              label="Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            <TextInput
-              label="Description"
-              name="description"
-              placeholder="Enter a description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-
-            <Group justify="flex-end" mt="md">
-              <Button
-                className="disabled:bg-slate-500 bg-green-500"
-                type="submit"
-                disabled={formData.name.length < 1}
-              >
-                Save
-              </Button>
-            </Group>
-          </form>
-        </Box>
+        <WatchlistMetaDataForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} sendButtonText={'Save'}/>
       </Modal>
     </>
   );

@@ -6,6 +6,7 @@ export default {
       colors: {
         // "watchlist-green": "#FFFFFF",
         "watchlist-green": "#38CD51",
+        "delete-red" : "#b91c1c"
       },
     },
   },
