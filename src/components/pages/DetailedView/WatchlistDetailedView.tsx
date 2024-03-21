@@ -20,21 +20,33 @@ export default function WatchlistDetailedView() {
 
   return (
     <>
-      <div className="flex flex-row justify-between ">
+      <div className="flex flex-col md:flex-row justify-between p-6 bg-gray-800 rounded-lg shadow-md">
         <div>
-          <Title className="text-gray-300" order={1}>
+          <Title className="text-2xl text-gray-100 font-semibold mb-2">
             {selectedWatchlist.name}
           </Title>
-          <Text className="text-gray-600">{selectedWatchlist.description}</Text>
-          <Text className="text-gray-600">{selectedWatchlist.user}</Text>{" "}
-          <Space h="xl" />
+          <Text className="text-base text-gray-300 mb-4">
+            {selectedWatchlist.description}
+          </Text>
+          <Text className="text-sm text-gray-400">
+            Created by: {selectedWatchlist.user}
+          </Text>
+          <div className="mt-4">
+            {/* Assuming you want to display the number of items in the watchlist */}
+            <Text className="text-sm text-gray-400">
+              Number of items: {selectedWatchlist.movies?.length || 0}
+            </Text>
+          </div>
         </div>
-        <MoreOptionsMenus watchlist={selectedWatchlist} />
-        {/* TODO Remove modal props and replace with atoms when merged with main */}
-        {isEditFormActive && <EditWatchlistModal {...selectedWatchlist} />}
-        {isDeleteFormActive && <DeleteWatchlistModal {...selectedWatchlist} />}
+        <div className="flex-shrink-0">
+          <MoreOptionsMenus watchlist={selectedWatchlist} />
+        </div>
       </div>
-      <WatchlistItem {...selectedWatchlist} />
+      {isEditFormActive && <EditWatchlistModal {...selectedWatchlist} />}
+      {isDeleteFormActive && <DeleteWatchlistModal {...selectedWatchlist} />}
+      <div className="mt-6">
+        <WatchlistItem {...selectedWatchlist} />
+      </div>
     </>
   );
 }
