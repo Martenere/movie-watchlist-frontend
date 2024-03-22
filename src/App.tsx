@@ -34,7 +34,7 @@ export default function app() {
         </Suspense>
       </AppShell.Navbar>
 
-      <AppShell.Main className="bg-gray-700">
+      <AppShell.Main className="bg-gradient-to-t from-gray-950 to-gray-500">
         <Suspense>
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />

@@ -1,4 +1,4 @@
-import { Space } from "@mantine/core";
+import { Center, Space } from "@mantine/core";
 import MoviePageSearchBar from "./MoviePageSearchBar/MoviePageSearchBar";
 import { Suspense } from "react";
 import MovieCardList from "./MovieCardList";
