@@ -78,6 +78,7 @@ export default function DeleteWatchlistModal({ id, name }: WatchlistItemProps) {
                 className="disabled:bg-slate-700 bg-delete-red"
                 type="submit"
                 disabled={formData.name.toLowerCase() !== name.toLowerCase()}
+                onClick={handleSubmit}
               >
                 Delete
               </Button>

@@ -1,4 +1,4 @@
-import { Flex } from "@mantine/core";
+import { Center, Flex } from "@mantine/core";
 
 import MovieCardFetcher from "./MovieCardFetcher";
 import { Suspense } from "react";
@@ -26,21 +26,23 @@ export default function WatchlistItem({
 
   return (
     <>
-      <Flex
-        mih={50}
-        gap="xl"
-        justify="start"
-        align="flex-start"
-        direction="row"
-        wrap="wrap"
-        className="max-w-7xl justify-self-center"
-      >
-        {movies.map((movieId) => (
-          <Suspense key={movieId} fallback="Loading Movie...">
-            <MovieCardFetcher id={movieId} />
-          </Suspense>
-        ))}
-      </Flex>
+      <Center>
+        <Flex
+          mih={50}
+          gap="xl"
+          justify="center"
+          align="flex-start"
+          direction="row"
+          wrap="wrap"
+          className="max-w-7xl"
+        >
+          {movies.map((movieId) => (
+            <Suspense key={movieId} fallback="Loading Movie...">
+              <MovieCardFetcher id={movieId} />
+            </Suspense>
+          ))}
+        </Flex>
+      </Center>
     </>
   );
 }
